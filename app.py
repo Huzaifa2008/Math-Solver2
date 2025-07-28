@@ -1,14 +1,16 @@
 from flask import Flask, send_file, request, jsonify
+from flask_cors import CORS
 from sympy import symbols, log, sin, cos, tan, exp, sqrt
 from sympy.parsing.sympy_parser import parse_expr, standard_transformations, implicit_multiplication_application
 
 app = Flask(__name__)
+CORS(app)  # Enable CORS
 
 x = symbols('x')
 
 @app.route('/')
 def home():
-    return send_file('index.html')  # Using send_file as per your preference
+    return send_file('index.html')
 
 @app.route('/style.css')
 def serve_css():
