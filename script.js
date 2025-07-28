@@ -2,7 +2,7 @@ let currentChart = null;
 
 async function calculate(operation) {
   const value = document.getElementById('inputValue').value;
-  const response = await fetch('/calculate', {
+  const response = await fetch('https://math-solver2-pyjm.onrender.com/calculate', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ value, operation })
@@ -17,7 +17,7 @@ async function plotFunction() {
   const funcStr = document.getElementById('functionInput').value;
   if (!funcStr) return;
 
-  const response = await fetch('/evaluate_function', {
+  const response = await fetch('https://math-solver2-pyjm.onrender.com/evaluate_function', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ function: funcStr })
@@ -45,51 +45,52 @@ async function plotFunction() {
       }]
     },
     options: {
-  responsive: true,
-  scales: {
-   x: {
-  type: 'linear',
-  position: 'bottom',
-  min: -10,
-  max: 10,
-  grid: {
-  color: (ctx) => ctx.tick.value === 0 ? 'white' : '#444',
-  lineWidth: (ctx) => ctx.tick.value === 0 ? 2 : 1
-},
-  ticks: {
-    color: 'white'
-  },
-  title: {
-    display: true,
-    text: 'x',
-    color: 'white'
-  }
-},
-y: {
-  type: 'linear',
-  min: -10,
-  max: 10,
-  grid: {
-    color: (ctx) => ctx.tick.value === 0 ? 'white' : '#444',
-    lineWidth: (ctx) => ctx.tick.value === 0 ? 2 : 1
-  },
-  ticks: {
-    color: 'white'
-  },
-  title: {
-    display: true,
-    text: 'f(x)',
-    color: 'white'
-  }
-}
-  },
-  plugins: {
-    legend: {
-      labels: {
-        color: 'white'
+      responsive: true,
+      scales: {
+        x: {
+          type: 'linear',
+          position: 'bottom',
+          min: -10,
+          max: 10,
+          grid: {
+            color: (ctx) => ctx.tick.value === 0 ? 'white' : '#444',
+            lineWidth: (ctx) => ctx.tick.value === 0 ? 2 : 1
+          },
+          ticks: {
+            color: 'white'
+          },
+          title: {
+            display: true,
+            text: 'x',
+            color: 'white'
+          }
+        },
+        y: {
+          type: 'linear',
+          min: -10,
+          max: 10,
+          grid: {
+            color: (ctx) => ctx.tick.value === 0 ? 'white' : '#444',
+            lineWidth: (ctx) => ctx.tick.value === 0 ? 2 : 1
+          },
+          ticks: {
+            color: 'white'
+          },
+          title: {
+            display: true,
+            text: 'f(x)',
+            color: 'white'
+          }
+        }
+      },
+      plugins: {
+        legend: {
+          labels: {
+            color: 'white'
+          }
+        }
       }
     }
-  }
-}
   });
 }
+
